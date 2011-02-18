@@ -1,0 +1,14 @@
+{% extends "templates/default.html" %}
+{% block title %}Sinaly Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+      Hello, {{name}}  <a href="/sina/auth">新浪</a>  
+	<ul>
+	  {% for status in statuses %}
+	    <li>{{status['user']['name']}} 说：<p>{{ status['text'] }}</p></li>
+	  {% endfor %}
+	</ul>
+{% endblock %}

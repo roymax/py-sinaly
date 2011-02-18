@@ -1,0 +1,61 @@
+/*************************************
+   WELCOME TO THE CUSTOM STYLESHEET
+--------------------------------------
+              style.css
+        BlueTrip CSS Framework
+    Put your custom styles in here.
+***************************************/
+
+/**************************************/
+/*           COLOR SCHEME             */
+/**************************************
+- black		#000
+- white		#fff
+-           #
+-           #
+-           #
+***************************************/
+
+
+/**************************************/
+/*              GLOBALS               */
+/**************************************/
+* {
+	margin:0px auto;
+	padding:0px auto;
+	font-size:12px;
+}
+
+html,body {background: white;-webkit-text-size-adjust: none; margin: 0px; }
+
+body {background-repeat: repeat; background:url(../images/bg2.jpg)}
+
+#header { border-bottom-width: 1px; border-color: #e50087; margin: 0px auto;
+	width: 100%; color: #f4f4f4; background-color: #470b00; height: 40px;}
+
+#warp {min-height: 100%;}
+
+#footer { background-color: white; min-height: 100px; }
+
+/**************************************/
+/*              HEADER                */
+/**************************************/
+
+
+
+/**************************************/
+/*             NAVIGATION             */
+/**************************************/
+
+
+
+/**************************************/
+/*            MAIN CONTENT            */
+/**************************************/
+
+
+
+/**************************************/
+/*               FOOTER               */
+/**************************************/
+
