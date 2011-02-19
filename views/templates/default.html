@@ -3,34 +3,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     {% block head %}
-    <title>{% block title %}{% endblock %} - Sinaly</title>
+    <title>{% block title %}{% endblock %} - SiNALY</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" type="text/css" media="screen,projection" href="/static/stylesheets/screen.css">
-	<link rel="stylesheet" type="text/css" media="print" href="/static/stylesheets/print.css">
-	<!--[if IE]>
-		<link rel="stylesheet" type="text/css" media="screen,projection" href="/static/stylesheets/ie.css">	
-	<![endif]-->
 	<link rel="stylesheet" type="text/css" media="screen,projection" href="/static/stylesheets/style.css">
+
     <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png">
 	<script src="/static/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
 
     {% endblock %}
 </head>
 <body>
-	<div id="header">
-		<div class="container" style="mini_height:100%">
-			Sinaly
+	<div id="header">         
+		<div class="container">
+			<a href="/"  id="logo" >SiNALY</a>
+			<span class="slogen">同步 • 分享 • 发现</span>
 		</div> 
 	</div>
-    <div id="warp" class="container">
-		<div id="content">
+    <div id="warpper"  >
+		<div id="content"  class="container">
 			{% block content %}{% endblock %}
+		</div>
+		<div id="sidebar">
+			{% block sidebar %}{% endblock %}
 		</div>
 	</div>
 	<div id="footer" >
 		<div class="container">        
 			{% block footer %}
-        		&copy; Copyright 2010 by <a href="http://blog.roynotes.com/">Roy</a>.
+        		<div class="fr">
+					<a href="http://www.webfaction.com/?affiliate=roymax" title="WebFaction Agile hosting from $5.50/mo"><img src="/static/images/webfaction-110x40-dark-logo-bg.png"></a>
+					<a href="http://trunk.ly"><img src="http://trunk.ly/static/trunkly-social-icon.png"></a>
+					<a href="http://open.t.sina.com.cn"><img src="/static/images/sina-logo-64_64.png"></a>
+				</div>
+				<div>SiNALY是一个URL共享项目</div>
+				<div>&copy; Copyright 2010 by <a href="http://blog.roynotes.com/">Roy</a>. </div>
+				
+				<small>
+					VERSION: 0.1          
+					<br>
+			   		 No Time is No Excuse
+				</small>
         	{% endblock %} 
 		</div>
     </div>

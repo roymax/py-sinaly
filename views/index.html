@@ -4,11 +4,28 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
-
-      Hello, {{name}}  <a href="/sina/auth">新浪</a>  
-	<ul>
-	  {% for status in statuses %}
-	    <li>{{status['user']['name']}} 说：<p>{{ status['text'] }}</p></li>
-	  {% endfor %}
-	</ul>
+    <div class="box" style="width:700px">
+		<div class="cell">
+			<div class="bigger">Welcome to <strong>SiNALY</strong></div>
+			<div class="fr">
+				
+			</div>
+		</div>
+		<div class="cell">
+           	将新浪微博中含有的链接保存到书签共享网络，只需要两步
+			<ul>    
+				<li><a href="/sina/auth"><img src="/static/images/24.png"></a></li>
+				<li>绑定你的Trunk.ly帐号</li>
+			</ul>
+		</div>
+ 		{% if statuses %}
+		<div class="cell">    
+			<ul>
+			  {% for status in statuses %}
+			    <li>{{status['user']['name']}} 说：<p>{{ status['text'] }}</p></li>
+			  {% endfor %}
+			</ul>               
+		</div>
+	{% endif %}    
+    </div>
 {% endblock %}

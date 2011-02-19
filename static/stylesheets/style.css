@@ -1,10 +1,3 @@
-/*************************************
-   WELCOME TO THE CUSTOM STYLESHEET
---------------------------------------
-              style.css
-        BlueTrip CSS Framework
-    Put your custom styles in here.
-***************************************/
 
 /**************************************/
 /*           COLOR SCHEME             */
@@ -26,21 +19,80 @@
 	font-size:12px;
 }
 
-html,body {background: white;-webkit-text-size-adjust: none; margin: 0px; }
+html,body {background: white;-webkit-text-size-adjust: none; margin: 0px; }  
 
-body {background-repeat: repeat; background:url(../images/bg2.jpg)}
+a:link { text-decoration: none; color: #000 }
+a:visited { text-decoration: none; color: #000; }
+a:hover { text-decoration: none; color: #000; }
+a:active, a:focus { text-decoration: none; color: #000; }
 
-#header { border-bottom-width: 1px; border-color: #e50087; margin: 0px auto;
-	width: 100%; color: #f4f4f4; background-color: #470b00; height: 40px;}
+.container {
+	width:950px;
+}
 
-#warp {min-height: 100%;}
+.box {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.199219) 0px 1px 0px;
+	background-color: white;
+	border: 2px solid white;
+	border-bottom-left-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+	border-top-left-radius: 5px 5px;
+	border-top-left-radius: 5px 5px;
+	border-top-right-radius: 5px 5px;
+	border-top-right-radius: 5px 5px;	
+}
 
-#footer { background-color: white; min-height: 100px; }
+.box .fr {
+	float:right; 	
+}
+ 
+.box .cell {
+	border-bottom: 1px solid #E2E2E2;
+	font-size: 12px;
+	line-height: 16px;
+	padding: 10px;
+}
+
+.box .sep {
+	border-top: 1px solid #F0F0F0;
+	margin: 10px 0px;
+}
+
 
 /**************************************/
 /*              HEADER                */
 /**************************************/
 
+#header { border-bottom-style: solid; border-bottom-width: 1px; border-color: #e5dbd6; margin: 0px auto;
+	width: 100%; color: #f4f4f4; background-color: #333; height: 40px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.199219) 0px 1px 0px;}
+
+#logo {
+	color: white;          
+	font-color: white;
+	font-size: 32px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-left: 20px; 
+	float: left;
+}
+
+.slogen {
+	font-size: 18px;
+	font-weight: bold;
+	float: right; 
+	padding-top: 10px;   
+}
+
+.bigger {
+	font-size: 16px;
+}
+
+strong, b {
+	font-weight: bolder;
+}
 
 
 /**************************************/
@@ -53,9 +105,42 @@ body {background-repeat: repeat; background:url(../images/bg2.jpg)}
 /*            MAIN CONTENT            */
 /**************************************/
 
+#warpper {
+	min-height: 500px;
+	background-repeat: 
+	repeat; background:
+	url(../images/bg2.jpg) ;	
+	margin:0px auto;
+	padding:0px auto;
+}
+
+#content {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#sidebar {
+	float: left;
+}
+
 
 
 /**************************************/
 /*               FOOTER               */
 /**************************************/
+#footer { 	
+	margin:0px auto;
+	padding:0px auto;
+	border-top-width: 1px dashed  #a6a6a6; 
+	background-color: white; min-height: 60px;
+	color:#E2E2E2; }
+	
+#footer .container {
+	padding: 20px 0;
+	width: 920px;
+}
 
+#footer .fr {
+	float:right;
+	margin: 0px ;
+}
