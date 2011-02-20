@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # encoding: utf-8
+import sys, os
+abspath = os.path.dirname(__file__)
+sys.path.append(abspath)
+os.chdir(abspath)
+
 import web 
 from web.contrib.template import render_jinja
 from sinat import Sinat, OAuthToken, OAuthConsumer  
 from trunkly import Trunkly 
-import sys
+
 
 reload(sys) 
 sys.setdefaultencoding("utf-8")
@@ -21,7 +26,8 @@ urls = (
 	"/faq", "Faq",
 	"/about", "About"
 ) 
-app = web.application(urls,globals()) 
+app = web.application(urls,globals())
+application = app.wsgifunc()
 
 def initlog():
 	"""docstring for initlog"""
@@ -61,15 +67,17 @@ sinaConsumer = OAuthConsumer(SINA_CONSUMER_KEY, SINA_CONSUMER_SECRET)
 # app.add_processor(load_sqla) 
 ###########################
 
+#db = web.database(dbn='mysql', db='roymax_sinaly', user='roymax_sinaly', pw='654no8BAxf8hqnT')
 db = web.database(dbn='mysql', db='SINALY', user='root', pw='')
 store = web.session.DBStore(db, 'sessions')
+#store = web.session.DiskStore(os.path.join(abspath,'sessions'))
 session = web.session.Session(app, store, initializer={'count': 0})
 
 web.config.session_parameters['secret_key']='Kdskjfka@#fWERTYUINSBC$%^^&*()'
 
 #jinja2
 render = render_jinja(
-        'views',   # Set template directory.
+        os.path.join(abspath,'views') ,   # Set template directory.
         encoding = 'utf-8',                         # Encoding.
     )  
 

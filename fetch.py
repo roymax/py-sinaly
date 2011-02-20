@@ -5,17 +5,18 @@ fetch.py
 
 Created by Roy on 2011-02-14.
 Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-"""
+"""    
+
 import re 
 import lxml.html
 import web
 from sinat import Sinat, OAuthToken, OAuthConsumer  
 from trunkly import Trunkly
 
-
 SINA_CONSUMER_KEY = '3892402622' # your App Key
 SINA_CONSUMER_SECRET = '6af8bdaa10fb55fa82089a8a29787f81' # your App Secret  
 
+#db = web.database(dbn='mysql', db='roymax_sinaly', user='roymax_sinaly', pw='654no8BAxf8hqnT') 
 db = web.database(dbn='mysql', db='SINALY', user='root', pw='')
 sinaConsumer = OAuthConsumer(SINA_CONSUMER_KEY, SINA_CONSUMER_SECRET)
 p = re.compile('http://[\\w\\.\\-\\/]+')

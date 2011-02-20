@@ -23,15 +23,17 @@ class User(Base):
 	password = Column(String(32))
 	provider = Column(String(4))
 	token = Column(String(32))
-	secret = Column(String(42))
+	secret = Column(String(32))
+	trunk_key = Column(String(42))
 	
-	def __init__(self, passport, nickname, password, provider, token, secret ):
+	def __init__(self, passport, nickname, password, provider, token, secret, trunk_key ):
 		self.passport = passport
 		self.nickname = nickname
 		self.password = password
 		self.provider = provider
 		self.token = token
 		self.secret = secret
+		self.trunk_key = trunk_key
 	
 	def __repr__(self)   :
 		return "<User('%s','%s')>" % (self.passport, self.password)
