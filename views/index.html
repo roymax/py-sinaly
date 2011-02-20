@@ -1,10 +1,11 @@
 {% extends "templates/default.html" %}
-{% block title %}Sinaly Index{% endblock %}
+{% block title %}Index{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
-{% block content %}
-    <div class="box" style="width:700px">
+{% block content %}  
+	<div class="span-14 prefix-5 suffix-5 last" style="padding-top: 50px">
+    <div class="box" >
 		<div class="cell">
 			<div class="bigger">Welcome to <strong>SiNALY</strong></div>
 			<div class="fr">
@@ -12,20 +13,23 @@
 			</div>
 		</div>
 		<div class="cell">
-           	将新浪微博中含有的链接保存到书签共享网络，只需要两步
-			<ul>    
-				<li><a href="/sina/auth"><img src="/static/images/24.png"></a></li>
-				<li>绑定你的Trunk.ly帐号</li>
-			</ul>
+			<p>SiNALY是一个非常简单的程序，它试图将你的<a href="http://t.sina.com.cn" target="_blank">新浪微博</a>与书签分享网络<a href="http://trunk.ly" target="_blank">Trunk.ly</a>联结在一起。</p>                         
+			<p>    
+			本程序能帮助你将新浪微博上所<span class="bigger"> 发现 </span>有价值的文章，精彩的视频，有趣的网站等……同步<span class="bigger"> 分享  </span>到<a href="http://trunk.ly" target="_blank">Trunk.ly</a>上，而你只需要发布或转发一条包含链接的微博，其他的一切都是自动的。
+			</p>                                                   
+			<p>更重要的，<a href="http://trunk.ly" target="_blank">Trunk.ly</a>不僅僅是一个书签分享网络，它利用你收藏的书签建立一个属于你的网页搜索引擎，让你更快、更有效地<span class="bigger"> 搜索 </span>自己的收藏.</p>
+			<p>开始使用前，你<b>需要</b>同时拥有一个新浪微博帐号和一个Trunk.ly帐号。</p>
+			<div class="center"><a href="/sina/auth" title="用新浪微博登录"><img src="/static/images/24.png"></a></div>
 		</div>
- 		{% if statuses %}
-		<div class="cell">    
-			<ul>
-			  {% for status in statuses %}
-			    <li>{{status['user']['name']}} 说：<p>{{ status['text'] }}</p></li>
-			  {% endfor %}
-			</ul>               
-		</div>
-	{% endif %}    
+		<div class="cell">
+			&nbsp;
+			<div class="fr">
+				<small>
+					&#x238B;&nbsp;&nbsp;SiNALY 才刚刚上路，或许还经常罢工。 
+				</small>
+			</div>
+		</div>   
     </div>
+
+	</div>
 {% endblock %}

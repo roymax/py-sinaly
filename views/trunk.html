@@ -1,0 +1,37 @@
+{% extends "templates/default.html" %}
+{% block title %}Sinaly Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}  
+	<div class="span-14 prefix-5 suffix-5 last" style="padding-top: 50px">
+    <div class="box" >
+		<div class="cell">
+			<div class="bigger">绑定到你的 <strong>Trunk.ly</strong></div>
+			<div class="fr">
+				
+			</div>
+		</div>
+		<div class="cell">     
+			{% if error %}<p class="error">{{ error }}</p>{% endif %}
+			
+			<form action="/trunk" method="post" accept-charset="utf-8">
+				<fieldset>
+					<legend>请输入你的Trunk.ly帐号与密码</legend>
+				
+				 <div class="center">
+				 <label >用户名:</label><input type="text" name="username"> 
+				 </div>
+				 <div class="center">
+                 <label >密码:</label><input type="password" name="password"></div>
+				<p class="center"><input type="submit" value="绑定到Trunk.ly &rarr;"></p>
+				</fieldset>  
+			</form>
+		</div>
+		<div class="cell">
+			<div class="center">本程序承诺不保存你的用户名及密码</div>
+		</div>   
+    </div>
+
+	</div>
+{% endblock %}

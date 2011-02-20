@@ -1,14 +1,25 @@
-import web
+#!/usr/bin/env python
+# encoding: utf-8
+import web 
 from web.contrib.template import render_jinja
-from sinat import Sinat, OAuthToken, OAuthConsumer 
+from sinat import Sinat, OAuthToken, OAuthConsumer  
+from trunkly import Trunkly 
 import sys
+
+reload(sys) 
+sys.setdefaultencoding("utf-8")
 
 web.config.debug = False
 
 urls = (
 	"/" , "Index",
 	"/sina/auth", "Sinauth",
-	"/sina/auth/callback", "SinaCallback"
+	"/sina/auth/callback", "SinaCallback", 
+	"/trunk", "Trunk",
+	"/home", "Home",
+	"/logout", "Logout",
+	"/faq", "Faq",
+	"/about", "About"
 ) 
 app = web.application(urls,globals()) 
 
@@ -54,6 +65,8 @@ db = web.database(dbn='mysql', db='SINALY', user='root', pw='')
 store = web.session.DBStore(db, 'sessions')
 session = web.session.Session(app, store, initializer={'count': 0})
 
+web.config.session_parameters['secret_key']='Kdskjfka@#fWERTYUINSBC$%^^&*()'
+
 #jinja2
 render = render_jinja(
         'views',   # Set template directory.
@@ -63,18 +76,81 @@ render = render_jinja(
 class Index:
 	"""docstring for index"""
 	def GET(self):
-		# return 'Hello world!'
-		access_key=session.get('access_key',None)
-		access_secret=session.get('access_secret',None)
-	    
-		if access_key:
-			access_token = OAuthToken(access_key, access_secret) 
-			sinat = Sinat(sinaConsumer, access_token=access_token)
-			statuses = sinat.statuses__friends_timeline('GET', {'count': 10})
-			return render.index(name="roy", statuses=statuses)
+		if session.get('logged',False):
+			user = db.select('users',dict(passport=session.uid, provider=session.provider), 
+					where='passport = $passport and provider = $provider ')
+			key = user[0]['trunk_key']
+			if not key: 
+				web.seeother("/trunk")
+			else:                 
+				
+				session.trunk_key=key
+				web.seeother("/home")  
+			
+			# access_key=session.get('access_key',None)
+			# access_secret=session.get('access_secret',None)
+			# 
+			# access_token = OAuthToken(access_key, access_secret) 
+			# sinat = Sinat(sinaConsumer, access_token=access_token)
+			# statuses = sinat.statuses__friends_timeline('GET', {'count': 10})
+			# return render.index(statuses=statuses)
+			
 		
-		return render.index(name="roy")
+		return render.index()
 
+class Home:
+	def GET(self):
+		if not session.get('logged' ,False):
+			 web.seeother("/") 
+		
+		return render.home(nickname=session.nickname)
+
+class Logout:
+	def GET(self):
+		session.kill() 
+
+		return render.index()
+
+class Trunk:
+	def GET(self):
+		if not session.get('logged' ,False):
+			 web.seeother("/")
+			
+		return render.trunk()
+		
+	def POST(self):
+		if not session.get('logged' ,False):
+			web.seeother("/")
+		data = web.input()
+		username = data.username
+		password = data.password
+		
+		logger.debug('username %s ' % username)
+		if username and password:
+			try:
+				logger.debug('request api_key ')
+				t = Trunkly()
+				apikey = t.get_api_key(username=username,password=password)
+				logger.debug('api_key is %s' % apikey)
+				db.update('users',vars=dict(passport=session.uid, provider=session.provider), where='passport = $passport and provider = $provider ',trunk_key=apikey['api_key'])
+				
+ 				session.trunk_key = apikey['api_key']
+			except:
+				logger.debug("%s" % Exception)
+				return render.trunk(username=username , error="Trunk.ly认证失败.")      
+			
+		web.seeother("/home")
+
+class Faq:
+	def GET(self):
+		return render.faq()
+                             
+                                   
+class About:
+	def GET(self):
+		return render.about()
+		
+		
 class Sinauth:
 	"""sina oauth for sinauth"""
 	def GET(self):                    
@@ -115,13 +191,17 @@ class SinaCallback:
 		user = db.select('users',dict(passport=uid), where='passport = $passport and provider = "sina"')
 		if not user:
 			db.insert('users', passport=data['id'],nickname=data['screen_name'], provider="sina", token=access_token.key, secret=access_token.secret)
-		else: 
+		else:
 			db.update('users',vars=dict(passport=uid),  where='passport = $passport and provider = \'sina\'', token=access_token.key, secret=access_token.secret ) 
 		
 		del session.request_token
 		del session.request_token_secret
 		session.access_key=access_token.key
 		session.access_secret=access_token.secret
+		session.logged=True
+		session.nickname=data['screen_name']
+		session.uid=data['id']
+		session.provider='sina'
 		
 		web.seeother("/") 
 		

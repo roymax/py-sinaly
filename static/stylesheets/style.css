@@ -21,10 +21,19 @@
 
 html,body {background: white;-webkit-text-size-adjust: none; margin: 0px; }  
 
-a:link { text-decoration: none; color: #000 }
-a:visited { text-decoration: none; color: #000; }
-a:hover { text-decoration: none; color: #000; }
-a:active, a:focus { text-decoration: none; color: #000; }
+body {
+	position:relative;
+	background-repeat: repeat; 
+	background: url(../images/bg2.jpg) !important;
+	height: auto;
+}
+
+a {text-decoration: none !important;}
+a:link { text-decoration: underline; color:gray; } 
+a:visited { text-decoration: underline; color: #385F8A; }
+a:hover { text-decoration: underline; color: #385F8A; }
+a:active, a:focus { text-decoration: underline; color: #000; }
+
 
 .container {
 	width:950px;
@@ -56,7 +65,8 @@ a:active, a:focus { text-decoration: none; color: #000; }
 }
 
 .box .sep {
-	border-top: 1px solid #F0F0F0;
+	border-top: 1px solid #F0F0F0;     
+
 	margin: 10px 0px;
 }
 
@@ -75,9 +85,10 @@ a:active, a:focus { text-decoration: none; color: #000; }
 	font-size: 32px;
 	font-weight: bold;
 	padding-top: 10px;
-	padding-left: 20px; 
+	padding-left: 0px; 
 	float: left;
 }
+
 
 .slogen {
 	font-size: 18px;
@@ -88,6 +99,11 @@ a:active, a:focus { text-decoration: none; color: #000; }
 
 .bigger {
 	font-size: 16px;
+}
+
+small {
+	color:#E2E2E2;
+	font-size: smaller;
 }
 
 strong, b {
@@ -106,10 +122,8 @@ strong, b {
 /**************************************/
 
 #warpper {
-	min-height: 500px;
-	background-repeat: 
-	repeat; background:
-	url(../images/bg2.jpg) ;	
+	min-height: 480px;    
+   
 	margin:0px auto;
 	padding:0px auto;
 }
@@ -133,10 +147,10 @@ strong, b {
 	padding:0px auto;
 	border-top-width: 1px dashed  #a6a6a6; 
 	background-color: white; min-height: 60px;
-	color:#E2E2E2; }
+	color:#999; }
 	
 #footer .container {
-	padding: 20px 0;
+	padding: 15px 20px;
 	width: 920px;
 }
 

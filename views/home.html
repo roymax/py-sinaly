@@ -1,0 +1,29 @@
+{% extends "templates/default.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}  
+	<div class="span-16 prefix-4 suffix-4 last" style="padding-top: 80px">
+    <div class="box" >
+		<div class="cell" >
+				<div class="fr">
+				   <a href='/logout' title='退出'>退出</a>
+				</div>
+				<div class="bigger"><strong>{{nickname}}</strong>，欢迎使用<strong>SiNALY</strong></div>
+		</div>
+		<div class="cell">
+			<div class="center notice">
+				<strong>SiNALY</strong> 很高兴为你服务，正在为你同步书签
+			</div>
+		</div>
+		<div class="cell">
+			<div class="center">
+			   你随时可以点击这里 解除绑定 
+			</div>
+		</div>   
+		
+    </div>
+
+	</div>
+{% endblock %}

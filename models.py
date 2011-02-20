@@ -23,7 +23,7 @@ class User(Base):
 	password = Column(String(32))
 	provider = Column(String(4))
 	token = Column(String(32))
-	secret = Column(String(32))
+	secret = Column(String(42))
 	
 	def __init__(self, passport, nickname, password, provider, token, secret ):
 		self.passport = passport

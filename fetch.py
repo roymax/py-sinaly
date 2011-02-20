@@ -12,8 +12,7 @@ import web
 from sinat import Sinat, OAuthToken, OAuthConsumer  
 from trunkly import Trunkly
 
-                                           
-TRUNK_KEY='5229-4bdad3ab-650d-4f6d-9e8e-8912cb841d76'
+
 SINA_CONSUMER_KEY = '3892402622' # your App Key
 SINA_CONSUMER_SECRET = '6af8bdaa10fb55fa82089a8a29787f81' # your App Secret  
 
@@ -28,13 +27,13 @@ def main():
 		# print 'user %s ' % user.token
 		# print 'user %s ' % user.secret
 		access_token = OAuthToken(user.token, user.secret) 
-		sinat = Sinat(sinaConsumer, access_token=access_token)	
 		
 		if not user.trunk_key:
 			continue
-			
-		t = Trunkly(user.trunk_key) 
 		
+		t = Trunkly(user.trunk_key)
+		
+		sinat = Sinat(sinaConsumer, access_token=access_token)	
 		statuses = sinat.statuses__user_timeline('GET')
 		for status in statuses:
 			weibo = status['text']
@@ -47,18 +46,23 @@ def main():
 			urls = p.findall(weibo)
 			for url in urls:
 				print 'url is %s ' % url
+				title = None
 				try:
 					html = lxml.html.parse(url)
 					title = html.find(".//title").text
 					print 'title is %s' % title
-					t.post_link({'url': url,
+				    				
+				except:
+					print 'url %s fetch error: %s' % (url, html)
+				try:
+					if title:
+						t.post_link(parameters={'url': url,
 									'title': title,
 									'tags' : '',
 									'note' : weibo,
 									'text' : weibo})
-									
 				except:
-					print 'url %s fetch error: %s' % (url, html.message)
+					print 'post to trunk error. url %s title %s' % (url, title)
 				
 
 if __name__ == '__main__':
