@@ -12,6 +12,7 @@ import lxml.html
 import web
 from sinat import Sinat, OAuthToken, OAuthConsumer  
 from trunkly import Trunkly
+import time
 
 SINA_CONSUMER_KEY = '3892402622' # your App Key
 SINA_CONSUMER_SECRET = '6af8bdaa10fb55fa82089a8a29787f81' # your App Secret  
@@ -22,7 +23,8 @@ sinaConsumer = OAuthConsumer(SINA_CONSUMER_KEY, SINA_CONSUMER_SECRET)
 p = re.compile('http://[\\w\\.\\-\\/]+')
 
 
-def main():  
+def main():
+	print 'start at %s' % time.asctime()  
 	users = db.select("users")
 	for user in users:
 		# print 'user %s ' % user.token
@@ -51,6 +53,7 @@ def main():
 				try:
 					html = lxml.html.parse(url)
 					title = html.find(".//title").text
+					url = html.getroot().base_url
 					print 'title is %s' % title
 				    				
 				except:
@@ -65,6 +68,7 @@ def main():
 				except:
 					print 'post to trunk error. url %s title %s' % (url, title)
 				
+	print '---------------- end ---------------------'
 
 if __name__ == '__main__':
 	main()
