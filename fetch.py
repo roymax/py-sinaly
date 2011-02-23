@@ -26,6 +26,7 @@ p = re.compile('http://[\\w\\.\\-\\/]+')
 def main():
 	print 'start at %s' % time.asctime()  
 	users = db.select("users")
+	print 'current users count %s ' % len(users)
 	for user in users:
 		# print 'user %s ' % user.token
 		# print 'user %s ' % user.secret
@@ -50,24 +51,37 @@ def main():
 			for url in urls:
 				print 'url is %s ' % url
 				title = None
+				trunk = None
+				
+					
 				try:
 					html = lxml.html.parse(url)
 					title = html.find(".//title").text
 					url = html.getroot().base_url
-					print 'title is %s' % title
-				    				
+					print 'title is %s' % title 
+					print 'base url is %s ' % url
+					
+					try:
+						try:
+							trunk = t.get_link(parameters={'url': url})
+							print 'url Already exists!!!'
+							continue
+						except:
+							print 'error'
+							pass
+
+						if title and not trunk:
+							print 'post url to trunk.ly'
+							t.post_link(parameters={'url': url,
+										'title': title,
+										'tags' : '',
+										'note' : weibo,
+										'text' : weibo})
+					except:
+						print 'post to trunk error. url %s title %s' % (url, title)
 				except:
-					print 'url %s fetch error: %s' % (url, html)
-				try:
-					if title:
-						t.post_link(parameters={'url': url,
-									'title': title,
-									'tags' : '',
-									'note' : weibo,
-									'text' : weibo})
-				except:
-					print 'post to trunk error. url %s title %s' % (url, title)
-				
+					print 'url %s fetch error' % (url)
+					
 	print '---------------- end ---------------------'
 
 if __name__ == '__main__':

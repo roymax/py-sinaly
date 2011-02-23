@@ -94,15 +94,6 @@ class Index:
 				
 				session.trunk_key=key
 				web.seeother("/home")  
-			
-			# access_key=session.get('access_key',None)
-			# access_secret=session.get('access_secret',None)
-			# 
-			# access_token = OAuthToken(access_key, access_secret) 
-			# sinat = Sinat(sinaConsumer, access_token=access_token)
-			# statuses = sinat.statuses__friends_timeline('GET', {'count': 10})
-			# return render.index(statuses=statuses)
-			
 		
 		return render.index()
 
