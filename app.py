@@ -46,26 +46,6 @@ SINA_CONSUMER_KEY = '3892402622' # your App Key
 SINA_CONSUMER_SECRET = '6af8bdaa10fb55fa82089a8a29787f81' # your App Secret  
 
 sinaConsumer = OAuthConsumer(SINA_CONSUMER_KEY, SINA_CONSUMER_SECRET)
-########################  
-# from sqlalchemy.orm import scoped_session, sessionmaker   
-# from models import *   
-# def load_sqla(handler):
-#     web.ctx.orm = scoped_session(sessionmaker(bind=engine))
-#     try:
-#         return handler()
-#     except web.HTTPError:
-#        web.ctx.orm.commit()
-#        raise
-#     except:
-#         web.ctx.orm.rollback()
-#         raise
-#     finally:
-#         web.ctx.orm.commit()
-#         # If the above alone doesn't work, uncomment 
-#         # the following line:
-#         #web.ctx.orm.expunge_all()  
-# app.add_processor(load_sqla) 
-###########################
 
 #db = web.database(dbn='mysql', db='roymax_sinaly', user='roymax_sinaly', pw='654no8BAxf8hqnT')
 db = web.database(dbn='mysql', db='SINALY', user='root', pw='')
