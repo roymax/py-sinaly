@@ -24,7 +24,8 @@ urls = (
 	"/home", "Home",
 	"/logout", "Logout",
 	"/faq", "Faq",
-	"/about", "About"
+	"/about", "About",
+	"/changelog","Changelog",
 ) 
 app = web.application(urls,globals())
 application = app.wsgifunc()
@@ -123,8 +124,11 @@ class Trunk:
 class Faq:
 	def GET(self):
 		return render.faq()
-                             
-                                   
+
+class Changelog:                 
+	def GET(self):
+		return render.changelog()
+
 class About:
 	def GET(self):
 		return render.about()
