@@ -20,7 +20,7 @@ SINA_CONSUMER_SECRET = '6af8bdaa10fb55fa82089a8a29787f81' # your App Secret
 #db = web.database(dbn='mysql', db='roymax_sinaly', user='roymax_sinaly', pw='654no8BAxf8hqnT') 
 db = web.database(dbn='mysql', db='SINALY', user='root', pw='')
 sinaConsumer = OAuthConsumer(SINA_CONSUMER_KEY, SINA_CONSUMER_SECRET)
-p = re.compile('http://[\\w\\.\\-\\/]+')
+p = re.compile('http[s]?://[\\w\\.\\-\\/]+')
 
 
 def main():
