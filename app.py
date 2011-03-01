@@ -21,6 +21,7 @@ urls = (
 	"/sina/auth", "Sinauth",
 	"/sina/auth/callback", "SinaCallback", 
 	"/trunk", "Trunk",
+	"/trunk/unbind", "TrunkUnbind",
 	"/home", "Home",
 	"/logout", "Logout",
 	"/faq", "Faq",
@@ -120,6 +121,17 @@ class Trunk:
 				return render.trunk(username=username , error="Trunk.ly认证失败.")      
 			
 		web.seeother("/home")
+		
+class TrunkUnbind:
+	def POST(self):
+		if not session.get('logged' ,False):
+			web.seeother("/")
+		try:
+			db.update('users',vars=dict(passport=session.uid, provider=session.provider), where='passport = $passport and provider = $provider ',trunk_key=None)
+		except:
+			pass
+			 
+		web.seeother("/trunk")
 
 class Faq:
 	def GET(self):
