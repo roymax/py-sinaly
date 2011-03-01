@@ -15,8 +15,8 @@ import sys
 reload(sys) 
 sys.setdefaultencoding("utf-8")
 
-TRUNK_API_HTTP='https://trunk.ly/api/v1'
-TRUNK_API_HTTPS='https://trunk.ly/api/v1'
+TRUNK_API_HTTP='https://trunkly.com/api/v1'
+TRUNK_API_HTTPS='https://trunkly.com/api/v1'
          
 
 HTTP_METHOD = ["GET", "POST", "PUT", "DELETE"]
